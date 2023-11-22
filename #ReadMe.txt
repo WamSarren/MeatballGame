@@ -9,4 +9,4 @@ Simple Movement controller
 Simple Camera follow system
 Ability to pick up cubes adding their mass to yours
 Bridge is destroyed when your mass is too much.
-Couldn't get the sag effect working on bridge.
+Bridge working properly.

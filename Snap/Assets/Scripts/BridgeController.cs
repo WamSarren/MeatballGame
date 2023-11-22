@@ -7,6 +7,27 @@ public class BridgeController : MonoBehaviour
     public float fallThreshold = 10.0f; // Adjust this threshold based on your game's requirements
     public GameObject triggerArea; // Reference to the trigger area GameObject
 
+    public Transform player;
+    public float maxSagDistance = 5.0f;
+    public float driveForce = 100.0f;
+
+    private ConfigurableJoint joint;
+
+    void Start()
+    {
+        joint = GetComponent<ConfigurableJoint>();
+        if (joint == null)
+        {
+            Debug.LogError("ConfigurableJoint not found on BridgeController.");
+            return;
+        }
+
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+    }
+
     void Update()
     {
         // Check if the total mass in the trigger area exceeds the threshold
@@ -17,7 +38,28 @@ public class BridgeController : MonoBehaviour
         }
     }
 
-    float GetTotalMassInTriggerArea()
+    void FixedUpdate()
+    {
+        if (joint == null || player == null)
+        {
+            return;
+        }
+
+        // Calculate distance to player
+        float distanceToPlayer = Mathf.Abs(player.position.y - transform.position.y);
+
+        // Calculate normalized sag distance
+        float normalizedSagDistance = Mathf.Clamp01(distanceToPlayer / maxSagDistance);
+
+        // Adjust drive force based on sag distance
+        joint.yDrive = new JointDrive
+        {
+            positionSpring = driveForce * (1.0f - normalizedSagDistance),
+            maximumForce = Mathf.Infinity
+        };
+    }
+
+        float GetTotalMassInTriggerArea()
     {
         float totalMass = 0.0f;
 
