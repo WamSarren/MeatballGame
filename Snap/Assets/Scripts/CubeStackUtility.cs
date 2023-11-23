@@ -36,18 +36,19 @@ public static class CubeStackUtility
         // Check if the stackRoot is a valid GameObject with a Rigidbody component
         if (stackRoot != null && stackRoot.TryGetComponent(out Rigidbody rootRigidbody))
         {
-            // Add the mass of the root Rigidbody to the total mass
-            totalMass += rootRigidbody.mass;
-        }
 
-        // Iterate through each child in the hierarchy
-        foreach (Transform childTransform in stackRoot.transform)
-        {
-            // Check if the child has a valid GameObject with a Rigidbody component
-            if (childTransform != null && childTransform.gameObject != null && childTransform.gameObject.TryGetComponent(out Rigidbody childRigidbody))
+            // Iterate through each child in the hierarchy
+            foreach (Transform childTransform in stackRoot.transform)
             {
-                // Add the mass of the child Rigidbody to the total mass
-                totalMass += childRigidbody.mass;
+                // Check if the child has a valid GameObject with a Rigidbody component
+                if (childTransform != null && childTransform.gameObject != null && childTransform.gameObject.TryGetComponent(out Rigidbody childRigidbody))
+                {
+                    // Add the mass of the child Rigidbody to the total mass
+                    totalMass += childRigidbody.mass;
+
+                    // Recursively calculate mass for potential grandchildren
+                    totalMass += CalculateTotalMass(childTransform.gameObject);
+                }
             }
         }
 

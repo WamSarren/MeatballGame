@@ -38,10 +38,10 @@ public class PlayerController : MonoBehaviour
 
         HandleCubeStacking();
 
-        // Calculate the Height of stacked cubes
-        float stackHeight = CubeStackUtility.CalculateStackHeight(carriedCube);
+        // Calculate the Mass of stacked cubes
+        float stackMass = CubeStackUtility.CalculateTotalMass(carriedCube);
 
-        Debug.Log("Total stack height: " + stackHeight);
+        Debug.Log("Total stack mass: " + stackMass);
     }
 
     void HandleMovement()
@@ -174,11 +174,17 @@ public class PlayerController : MonoBehaviour
         // Reset player mass to base mass
         playerRigidbody.mass = basePlayerMass;
 
-        // Calculate the stack height
-        float stackHeight = CubeStackUtility.CalculateStackHeight(carriedCube);
+        // Calculate the Mass of stacked cubes
+        float stackMass = CubeStackUtility.CalculateTotalMass(carriedCube);
 
-        // Adjust the player's mass based on the stack height
-        playerRigidbody.mass += stackHeight * 5.0f;
+        // Add the mass of the originally carried cube
+        if (carriedCube != null && carriedCube.TryGetComponent(out Rigidbody carriedRigidbody))
+        {
+            playerRigidbody.mass += carriedRigidbody.mass;
+        }
+
+        // Adjust the player's mass based on the stack mass
+        playerRigidbody.mass += stackMass;
     }
 
     void StackCubeOnTop(GameObject baseCube)
@@ -210,6 +216,9 @@ public class PlayerController : MonoBehaviour
             // Reset isCarryingCube and carriedCube since the cube is now stacked
             isCarryingCube = false;
             carriedCube = null;
+
+            // Reset player mass to base mass
+            playerRigidbody.mass = basePlayerMass;
         }
     }
 }
