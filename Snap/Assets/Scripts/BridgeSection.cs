@@ -44,10 +44,6 @@ public class BridgeSection : MonoBehaviour
         // Use the distance as a factor to determine sagging
         float sagFactor = rb.mass * 0.1f * (1.0f / (distanceToPlayer + 1.0f)); // Adding 1 to avoid division by zero
 
-        // Debugging information
-        Debug.Log("Distance to Player: " + distanceToPlayer);
-        Debug.Log("Sag Factor: " + sagFactor);
-
         // Apply sag effect by adjusting position along the Y-axis
         Vector3 sagPosition = initialPosition - new Vector3(0.0f, sagFactor, 0.0f);
         rb.MovePosition(sagPosition);
