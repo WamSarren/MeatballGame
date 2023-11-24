@@ -2131,6 +2131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallThreshold: 40
   triggerArea: {fileID: 614569573}
+  bridgeSegments: []
 --- !u!114 &717871676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3197,7 +3198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.91280615, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5918,8 +5919,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2276747a212a2c245b28a2a16f5c57c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallThreshold: 40
+  fallThreshold: 42
   triggerArea: {fileID: 1777204411}
+  bridgeSegments:
+  - {fileID: 1318344300}
+  - {fileID: 2049249052}
 --- !u!153 &2017022229
 ConfigurableJoint:
   m_ObjectHideFlags: 0
