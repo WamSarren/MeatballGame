@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 33234846}
   - component: {fileID: 33234845}
   - component: {fileID: 33234844}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BridgeSegment (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,6 +359,109 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33234842}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &83398282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 83398286}
+  - component: {fileID: 83398285}
+  - component: {fileID: 83398284}
+  - component: {fileID: 83398283}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &83398283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83398282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &83398284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83398282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &83398285
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83398282}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &83398286
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83398282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1086846558}
+  - {fileID: 975495572}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &93649078
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +609,7 @@ GameObject:
   - component: {fileID: 120033611}
   - component: {fileID: 120033609}
   - component: {fileID: 120033615}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Segment(6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +757,7 @@ GameObject:
   - component: {fileID: 124024158}
   - component: {fileID: 124024156}
   - component: {fileID: 124024162}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Segment(4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +905,7 @@ GameObject:
   - component: {fileID: 226111339}
   - component: {fileID: 226111337}
   - component: {fileID: 226111343}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Segment(2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1216,7 +1319,7 @@ GameObject:
   - component: {fileID: 363552296}
   - component: {fileID: 363552294}
   - component: {fileID: 363552300}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Segment(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1585,7 +1688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 614569575}
   - component: {fileID: 614569574}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TriggerArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1642,7 +1745,7 @@ GameObject:
   - component: {fileID: 688937407}
   - component: {fileID: 688937405}
   - component: {fileID: 688937411}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Segment(8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1885,7 +1988,7 @@ GameObject:
   - component: {fileID: 717871674}
   - component: {fileID: 717871675}
   - component: {fileID: 717871676}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2026,7 +2129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2276747a212a2c245b28a2a16f5c57c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallThreshold: 30
+  fallThreshold: 40
   triggerArea: {fileID: 614569573}
 --- !u!114 &717871676
 MonoBehaviour:
@@ -2189,7 +2292,7 @@ GameObject:
   - component: {fileID: 751952090}
   - component: {fileID: 751952088}
   - component: {fileID: 751952094}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Segment(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2411,7 +2514,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2456,6 +2559,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &758899834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 758899837}
+  - component: {fileID: 758899836}
+  - component: {fileID: 758899835}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &758899835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758899834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &758899836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758899834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &758899837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758899834}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &863532927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,7 +2641,7 @@ GameObject:
   - component: {fileID: 863532931}
   - component: {fileID: 863532930}
   - component: {fileID: 863532929}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BridgeSegment (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2706,7 +2877,7 @@ GameObject:
   - component: {fileID: 896945555}
   - component: {fileID: 896945554}
   - component: {fileID: 896945553}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BridgeSegment (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2976,6 +3147,85 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &975495571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 975495572}
+  - component: {fileID: 975495574}
+  - component: {fileID: 975495573}
+  m_Layer: 5
+  m_Name: Mass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &975495572
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975495571}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.85, y: 1.85, z: 1.85}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 83398286}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -63}
+  m_SizeDelta: {x: 1208, y: 532}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &975495573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975495571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.91280615, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 300
+    m_Alignment: 4
+    m_AlignByGeometry: 1
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Player Mass: 10.00'
+--- !u!222 &975495574
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975495571}
+  m_CullTransparentMesh: 1
 --- !u!1 &1017825167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,7 +3373,7 @@ GameObject:
   - component: {fileID: 1042746722}
   - component: {fileID: 1042746721}
   - component: {fileID: 1042746720}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BridgeSegment (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3345,6 +3595,95 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042746718}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1086846557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1086846558}
+  - component: {fileID: 1086846561}
+  - component: {fileID: 1086846560}
+  - component: {fileID: 1086846559}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1086846558
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086846557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 83398286}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1086846559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086846557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6fec441e86772479dd184e3ed15484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHit: 0
+--- !u!114 &1086846560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086846557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.8901961, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 0
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1086846561
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086846557}
+  m_CullTransparentMesh: 1
 --- !u!1 &1233739778
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,7 +3698,7 @@ GameObject:
   - component: {fileID: 1233739782}
   - component: {fileID: 1233739781}
   - component: {fileID: 1233739780}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BridgeSegment(5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3728,7 +4067,7 @@ GameObject:
   - component: {fileID: 1315178136}
   - component: {fileID: 1315178134}
   - component: {fileID: 1315178140}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Segment(9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3876,7 +4215,7 @@ GameObject:
   - component: {fileID: 1318344302}
   - component: {fileID: 1318344301}
   - component: {fileID: 1318344300}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BridgeSegment (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4231,6 +4570,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1414976401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1414976402}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1414976402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414976401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1947581843}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1527413319
 GameObject:
   m_ObjectHideFlags: 0
@@ -4245,9 +4615,9 @@ GameObject:
   - component: {fileID: 1527413326}
   - component: {fileID: 1527413325}
   - component: {fileID: 1527413324}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4394,7 +4764,7 @@ GameObject:
   - component: {fileID: 1673842943}
   - component: {fileID: 1673842941}
   - component: {fileID: 1673842947}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Segment(7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4542,7 +4912,7 @@ GameObject:
   - component: {fileID: 1736038888}
   - component: {fileID: 1736038887}
   - component: {fileID: 1736038886}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BridgeSegment (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4774,7 +5144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1777204413}
   - component: {fileID: 1777204412}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TriggerArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4905,7 +5275,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4964,9 +5334,9 @@ GameObject:
   - component: {fileID: 1828424836}
   - component: {fileID: 1828424835}
   - component: {fileID: 1828424837}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5112,8 +5482,9 @@ GameObject:
   - component: {fileID: 1947581842}
   - component: {fileID: 1947581841}
   - component: {fileID: 1947581840}
-  - component: {fileID: 1947581844}
   - component: {fileID: 1947581845}
+  - component: {fileID: 1947581846}
+  - component: {fileID: 1947581847}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5209,25 +5580,9 @@ Transform:
   m_Children:
   - {fileID: 1959718477}
   - {fileID: 462798110}
+  - {fileID: 1414976402}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1947581844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1947581839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ee1980ff999dad45bb625277fde4197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 5
-  rotationSpeed: 120
-  maxLookUp: 15
-  maxLookDown: 15
-  basePlayerMass: 10
 --- !u!54 &1947581845
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5255,6 +5610,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1947581846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947581839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7659c1ab1f30540bb23e93d923d95a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 5
+  rotationSpeed: 120
+  maxLookUp: 30
+  maxLookDown: 30
+  basePlayerMass: 10
+  groundCheck: {fileID: 1414976402}
+  groundCheckDistance: 0.4
+  fallMultiplier: 2
+  jumpForce: 50
+  crosshairController: {fileID: 1086846559}
+--- !u!114 &1947581847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947581839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cae9f1549a8594c9206599a7370dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRigidbody: {fileID: 1947581845}
+  massText: {fileID: 975495573}
 --- !u!1 &1959718476
 GameObject:
   m_ObjectHideFlags: 0
@@ -5508,7 +5899,7 @@ GameObject:
   - component: {fileID: 2017022230}
   - component: {fileID: 2017022229}
   - component: {fileID: 2017022228}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5527,7 +5918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2276747a212a2c245b28a2a16f5c57c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallThreshold: 30
+  fallThreshold: 40
   triggerArea: {fileID: 1777204411}
 --- !u!153 &2017022229
 ConfigurableJoint:
@@ -5541,7 +5932,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: -0.54}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.11, z: -1.0999999}
+  m_ConnectedAnchor: {x: 1.12, y: 0.05, z: 5.02}
   serializedVersion: 3
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -5767,7 +6158,7 @@ GameObject:
   - component: {fileID: 2049249053}
   - component: {fileID: 2049249051}
   - component: {fileID: 2049249052}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BridgeSegment (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6077,7 +6468,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6144,3 +6535,5 @@ SceneRoots:
   - {fileID: 347106647}
   - {fileID: 754557582}
   - {fileID: 2017022234}
+  - {fileID: 83398286}
+  - {fileID: 758899837}
