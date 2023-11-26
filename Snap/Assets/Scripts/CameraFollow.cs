@@ -5,9 +5,29 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;  // Reference to the player's transform
-    public Vector3 offset = new Vector3(0.0f, 2.0f, -5.0f);  // Offset from the player
-    public float minDistance = 5.0f;  // Minimum distance from the player
-    public float maxDistance = 10.0f; // Maximum distance from the player
+    public float minFOV = 60.0f;  // Minimum field of view
+    public float maxFOV = 90.0f; // Maximum field of view
+    public float heightMultiplier = 0.5f;  // Multiplier to control the effect of stack height on FOV
+
+    private Camera playerCamera;
+    private float originalFOV;
+
+    void Start()
+    {
+        // Get the Camera component attached to the player
+        playerCamera = target.GetComponentInChildren<Camera>();
+
+        // Check if the Camera component exists on the player or its children
+        if (playerCamera == null)
+        {
+            Debug.LogError("Camera component not found on the player or its children.");
+        }
+        else
+        {
+            // Store the original field of view
+            originalFOV = playerCamera.fieldOfView;
+        }
+    }
 
     void Update()
     {
@@ -17,14 +37,11 @@ public class CameraFollow : MonoBehaviour
             // Calculate the total height of the cube stack
             float stackHeight = CubeStackUtility.CalculateStackHeight(target.gameObject); // Assuming the player carries the stack
 
-            // Calculate the desired distance based on the stack height
-            float desiredDistance = Mathf.Clamp(stackHeight * 0.5f, minDistance, maxDistance);
+            // Calculate the desired field of view based on the stack height
+            float desiredFOV = Mathf.Clamp(stackHeight * heightMultiplier, minFOV, maxFOV);
 
-            // Set the camera's position to the player's position + offset and adjust the distance
-            transform.position = target.position + offset.normalized * desiredDistance;
-
-            // Look at the player's position
-            transform.LookAt(target.position);
+            // Lerp between the current FOV and the desired FOV for smooth transitions
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, desiredFOV, Time.deltaTime);
         }
     }
 }

@@ -27,6 +27,20 @@ public class PlayerController : MonoBehaviour
     private bool isCarryingCube = false;
     private GameObject carriedCube;
     private Rigidbody playerRigidbody;
+    public static PlayerController Instance;
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     void Start()
     {
@@ -64,8 +78,8 @@ public class PlayerController : MonoBehaviour
                 ChangeCubeColor(hitObject);
             }
 
-            // Handle all cube interactions (pick up, drop, stack) when 'E' is pressed
-            if (Input.GetKeyDown(KeyCode.E))
+            // Handle all cube interactions (pick up, drop, stack) when 'Cube' is pressed
+            if (Input.GetButtonDown("Cube"))
             {
                 HandleCubeInteraction();
             }
@@ -78,8 +92,8 @@ public class PlayerController : MonoBehaviour
                 ResetCubeColor(coloredCube);
             }
 
-            // Handle cube interaction (drop) when 'E' is pressed
-            if (Input.GetKeyDown(KeyCode.E))
+            // Handle cube interaction (drop) when 'Cube' is pressed
+            if (Input.GetButtonDown("Cube"))
             {
                 DropCube();
             }
@@ -150,8 +164,18 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Cube"))
                 {
-                    // Stack the carried cube on top of the other cube
-                    StackCubeOnTop(hit.collider.gameObject);
+                    // Check if the space to stack is clear before stacking
+                    Vector3 stackPosition = hit.collider.transform.position + new Vector3(0.0f, hit.collider.transform.localScale.y, 0.0f);
+                    if (IsSpaceClear(stackPosition))
+                    {
+                        // Stack the carried cube on top of the other cube
+                        StackCubeOnTop(hit.collider.gameObject);
+                    }
+                    else
+                    {
+                        // Handle the case where the stacking space is not clear
+                        Debug.Log("Cannot stack cube, space is not clear.");
+                    }
                 }
             }
             else
@@ -261,26 +285,35 @@ public class PlayerController : MonoBehaviour
             // Calculate the position to stack the carried cube on top
             Vector3 stackPosition = baseCube.transform.position + stackOffset;
 
-            // Set the position and rotation of the carried cube on top of the base cube
-            carriedCube.transform.position = stackPosition;
-            carriedCube.transform.rotation = stackRotation;
-
-            // Set the base cube as the parent of the carried cube
-            carriedCube.transform.parent = baseCube.transform;
-
-            // Disable the carried cube's rigidbody physics
-            Rigidbody cubeRigidbody = carriedCube.GetComponent<Rigidbody>();
-            if (cubeRigidbody != null)
+            // Check if the space to stack is clear
+            if (IsSpaceClear(stackPosition))
             {
-                cubeRigidbody.isKinematic = true;
+                // Set the position and rotation of the carried cube on top of the base cube
+                carriedCube.transform.position = stackPosition;
+                carriedCube.transform.rotation = stackRotation;
+
+                // Set the base cube as the parent of the carried cube
+                carriedCube.transform.parent = baseCube.transform;
+
+                // Disable the carried cube's rigidbody physics
+                Rigidbody cubeRigidbody = carriedCube.GetComponent<Rigidbody>();
+                if (cubeRigidbody != null)
+                {
+                    cubeRigidbody.isKinematic = true;
+                }
+
+                // Reset isCarryingCube and carriedCube since the cube is now stacked
+                isCarryingCube = false;
+                carriedCube = null;
+
+                // Reset player mass to base mass
+                playerRigidbody.mass = basePlayerMass;
             }
-
-            // Reset isCarryingCube and carriedCube since the cube is now stacked
-            isCarryingCube = false;
-            carriedCube = null;
-
-            // Reset player mass to base mass
-            playerRigidbody.mass = basePlayerMass;
+            else
+            {
+                // Handle the case where the stacking space is not clear
+                Debug.Log("Cannot stack cube, space is not clear.");
+            }
         }
     }
 
@@ -382,5 +415,26 @@ public class PlayerController : MonoBehaviour
             // Applying extra force to make the player descend faster
             playerRigidbody.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
+    }
+
+    bool IsSpaceClear(Vector3 position)
+    {
+        // Offset the starting position slightly above the cube
+        Vector3 rayStart = position + new Vector3(0.0f, -0.7f, 0.0f); // Adjust the Y offset as needed
+
+        // Cast a ray downward to check if the space is clear
+        Ray ray = new Ray(rayStart, Vector3.up);
+        float rayDistance = 0.5f; // Adjust this value based on your needs
+
+        // Debug the ray in the Scene view
+        Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red, 0.5f);
+
+        // Perform the raycast
+        if (!Physics.Raycast(ray, rayDistance))
+        {
+            return true; // Space is clear
+        }
+
+        return false; // Space is not clear
     }
 }
