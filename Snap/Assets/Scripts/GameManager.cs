@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public float fallThreshold = -10.0f; // Adjust this threshold based on your game's requirements
+    public PauseMenu pauseMenu;
 
     void Update()
     {
