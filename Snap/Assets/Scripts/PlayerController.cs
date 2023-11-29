@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,7 +16,11 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f; // Adjust this value to control the fall speed
 
     public float jumpForce = 5.0f; // Adjust this value to control the jump force
-    private bool isJumping = false;
+
+    public Text cubeCountText; // Reference to the UI text element
+    private int pickedUpCubeCount = 0; // Counter for picked up cubes
+    private HashSet<GameObject> pickedUpCubes = new HashSet<GameObject>();
+    public int currentBridgeIndex = 0; // Index to track the current bridge in the upgrade sequence
 
     public static RaycastHit hit;
     public CrosshairController crosshairController;
@@ -49,6 +54,25 @@ public class PlayerController : MonoBehaviour
         if (playerRigidbody == null)
         {
             Debug.LogError("Player does not have a Rigidbody component.");
+        }
+
+        // Ensure the cubeCountText reference is set
+        if (cubeCountText == null)
+        {
+            Debug.LogError("UI Text reference not set for cube count!");
+        }
+
+        // Get the player's collider component
+        CapsuleCollider playerCollider = GetComponent<CapsuleCollider>();
+        if (playerCollider != null)
+        {
+            // Add a physics material to control friction and bounciness
+            playerCollider.material = new PhysicMaterial("PlayerMaterial")
+            {
+                dynamicFriction = 0.6f,
+                staticFriction = 0.6f,
+                bounciness = 0.0f
+            };
         }
     }
 
@@ -102,13 +126,15 @@ public class PlayerController : MonoBehaviour
             crosshairController.SetHit(false);
         }
 
-        // Ground check
-        if (IsGrounded())
+        // Check for nearby smaller cubes and pick them up automatically
+        Collider[] nearbySmallerCubes = Physics.OverlapSphere(transform.position, 1.5f, LayerMask.GetMask("SmallerCube"));
+        foreach (var smallerCubeCollider in nearbySmallerCubes)
         {
-            // Reset jumping state when grounded
-            isJumping = false;
+            PickUpSmallerCube(smallerCubeCollider.gameObject);
         }
-        else
+
+        // Ground check
+        if (!IsGrounded())
         {
             // Apply fall multiplier when not grounded
             ApplyFallMultiplier();
@@ -133,8 +159,8 @@ public class PlayerController : MonoBehaviour
 
     void HandleMouseLook()
     {
-        float mouseX = Input.GetAxis("Mouse X") * 3;
-        float mouseY = Input.GetAxis("Mouse Y") * 3;
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
         currentRotationX -= mouseY * rotationSpeed * Time.deltaTime;
         currentRotationX = Mathf.Clamp(currentRotationX, -maxLookUp, maxLookDown);
@@ -149,7 +175,6 @@ public class PlayerController : MonoBehaviour
         {
             // Apply jump force
             playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isJumping = true;
         }
     }
 
@@ -158,30 +183,40 @@ public class PlayerController : MonoBehaviour
         // Check if the player is carrying a cube
         if (isCarryingCube)
         {
-            // Raycast to check if there's a cube in front of the player
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 2.0f))
+            // Raycast to check if there's a hole (CubeDestroyer) in front of the player
+            RaycastHit holeHit;
+            if (Physics.Raycast(transform.position, transform.forward, out holeHit, 2.0f) && holeHit.collider.CompareTag("Hole"))
             {
-                if (hit.collider.CompareTag("Cube"))
-                {
-                    // Check if the space to stack is clear before stacking
-                    Vector3 stackPosition = hit.collider.transform.position + new Vector3(0.0f, hit.collider.transform.localScale.y, 0.0f);
-                    if (IsSpaceClear(stackPosition))
-                    {
-                        // Stack the carried cube on top of the other cube
-                        StackCubeOnTop(hit.collider.gameObject);
-                    }
-                    else
-                    {
-                        // Handle the case where the stacking space is not clear
-                        Debug.Log("Cannot stack cube, space is not clear.");
-                    }
-                }
+                // Place the carried cube into the CubeDestroyer
+                PlaceCubeInDestroyer(holeHit.collider.gameObject);
             }
             else
             {
-                // Drop the cube if no additional cubes are in front of the player
-                DropCube();
+                // Raycast to check if there's a cube in front of the player
+                RaycastHit cubeHit;
+                if (Physics.Raycast(transform.position, transform.forward, out cubeHit, 2.0f))
+                {
+                    if (cubeHit.collider.CompareTag("Cube"))
+                    {
+                        // Check if the space to stack is clear before stacking
+                        Vector3 stackPosition = cubeHit.collider.transform.position + new Vector3(0.0f, cubeHit.collider.transform.localScale.y, 0.0f);
+                        if (IsSpaceClear(stackPosition))
+                        {
+                            // Stack the carried cube on top of the other cube
+                            StackCubeOnTop(cubeHit.collider.gameObject);
+                        }
+                        else
+                        {
+                            // Handle the case where the stacking space is not clear
+                            Debug.Log("Cannot stack cube, space is not clear.");
+                        }
+                    }
+                }
+                else
+                {
+                    // Drop the cube if no additional cubes are in front of the player
+                    DropCube();
+                }
             }
         }
         else
@@ -253,6 +288,113 @@ public class PlayerController : MonoBehaviour
                 playerRigidbody.mass = basePlayerMass;
             }
         }
+    }
+
+    void PlaceCubeInDestroyer(GameObject hole)
+    {
+        // Check if the hole is a valid target for placing the cube
+        if (hole != null && hole.CompareTag("Hole"))
+        {
+            // Drop the cube into the hole
+            isCarryingCube = false;
+
+            if (carriedCube != null)
+            {
+                // Enable the cube's rigidbody physics
+                Rigidbody cubeRigidbody = carriedCube.GetComponent<Rigidbody>();
+                if (cubeRigidbody != null)
+                {
+                    cubeRigidbody.isKinematic = false;
+                }
+
+                // Set the drop position for the cube (in front of the player)
+                Vector3 dropPosition = transform.position + transform.forward * 2.0f; // Adjust the distance as needed
+
+                // Set the drop position for the cube in the hole
+                carriedCube.transform.position = dropPosition;
+
+                // Detach the cube from the player
+                carriedCube.transform.parent = null;
+                carriedCube = null;
+
+                // Adjust the player's mass when dropping the cube
+                if (playerRigidbody != null)
+                {
+                    playerRigidbody.mass = basePlayerMass;
+                }
+
+                // Notify the CubeDestroyer that a cube has been placed
+                CubeDestroyer cubeDestroyer = hole.GetComponent<CubeDestroyer>();
+                if (cubeDestroyer != null)
+                {
+                    cubeDestroyer.OnCubePlaced();
+                }
+            }
+        }
+    }
+
+    void PickUpSmallerCube(GameObject smallerCube)
+    {
+        // Disable the smaller cube
+        smallerCube.SetActive(false);
+
+        // Add to the set of picked up cubes
+        pickedUpCubes.Add(smallerCube);
+
+        // Increment the player's counter for picked up cubes
+        pickedUpCubeCount++;
+
+        // Update the UI text with the new cube count
+        UpdateCubeCountUI();
+
+        // Add any other logic related to picking up smaller cubes
+        Debug.Log("Picked up a smaller cube!");
+    }
+
+    public int GetPickedUpCubeCount()
+    {
+        return pickedUpCubeCount;
+    }
+
+    public void DecreasePickedUpCubeCount(int amount)
+    {
+        pickedUpCubeCount -= amount;
+
+        // Ensure the cube count doesn't go below zero
+        pickedUpCubeCount = Mathf.Max(pickedUpCubeCount, 0);
+
+        // Update the UI text
+        UpdateCubeCountUI();
+    }
+
+    public void UpdateCubeCountUI()
+    {
+        // Update the UI text with the current cube count and material cost
+        int requiredMaterials = GetCurrentRequiredMaterials();
+        cubeCountText.text = "Materials: " + pickedUpCubeCount.ToString() + "\nUpgrade Cost: " + requiredMaterials.ToString();
+    }
+
+    public void UpdateCurrentBridgeIndex()
+    {
+        // Increment the current bridge index
+        currentBridgeIndex++;
+
+        // Call the method to update the UI
+        UpdateCubeCountUI();
+    }
+
+    private int GetCurrentRequiredMaterials()
+    {
+        // Define your upgrade costs based on the current bridge index
+        int[] upgradeCosts = { 0, 5, 10 }; // Adjust the costs for each upgrade
+
+        // Ensure the current bridge index is within bounds
+        if (currentBridgeIndex < upgradeCosts.Length)
+        {
+            return upgradeCosts[currentBridgeIndex];
+        }
+
+        return 0; // Return 0 if the index is out of bounds (for safety)
     }
 
     void UpdatePlayerMass(Transform parent)
@@ -368,31 +510,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool ShouldResetColor(GameObject cube)
-    {
-        // Check if the raycast is not hitting the cube anymore
-        if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit newHit, 2.0f))
-        {
-            return true; // Reset the color if the raycast is not hitting the cube
-        }
-
-        // Check if the new hit object is different from the previous hit object
-        if (newHit.collider.gameObject != hitObject)
-        {
-            return true; // Reset the color if the raycast hits a different object
-        }
-
-        // Check if the hit object is not the currently colored cube
-        if (cube != coloredCube)
-        {
-            return true; // Reset the color if the hit object is not the currently colored cube
-        }
-
-        // Add other conditions as needed
-
-        return false; // Don't reset the color by default
-    }
-
     bool IsGrounded()
     {
         // Check for collisions beneath the player using the groundCheck GameObject's layer
@@ -436,5 +553,10 @@ public class PlayerController : MonoBehaviour
         }
 
         return false; // Space is not clear
+    }
+
+    public float GetPlayerMass()
+    {
+        return playerRigidbody.mass;
     }
 }

@@ -47,7 +47,12 @@ public class BridgeController : MonoBehaviour
                 Rigidbody rb = joint.GetComponent<Rigidbody>();
                 if (rb != null)
                 {
+                    // Enable gravity for the rigidbody
                     rb.useGravity = true;
+
+                    // Add a random force upwards directly to the rigidbody
+                    Vector3 randomForce = new Vector3(Random.Range(4f, 8f), Random.Range(4f, 8f), Random.Range(15f, 35f));
+                    rb.AddForce(randomForce, ForceMode.Impulse);
                 }
 
                 // Option 1: Disable the configurable joint
